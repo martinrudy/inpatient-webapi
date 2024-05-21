@@ -1,4 +1,6 @@
 internal/inpatient_wl/README.md
+internal/inpatient_wl/api_ambulances.go
 internal/inpatient_wl/api_inpatient_waiting_list.go
+internal/inpatient_wl/model_ambulance.go
 internal/inpatient_wl/model_waiting_list_entry.go
 internal/inpatient_wl/routers.go
