@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/martinrudy/inpatient-webapi/api"
+	"github.com/martinrudy/inpatient-webapi/internal/inpatient_wl"
 )
 
 func main() {
@@ -22,6 +23,7 @@ func main() {
     engine := gin.New()
     engine.Use(gin.Recovery())
     // request routings
+    inpatient_wl.AddRoutes(engine)
     engine.GET("/openapi", api.HandleOpenApi)
     engine.Run(":" + port)
 }
