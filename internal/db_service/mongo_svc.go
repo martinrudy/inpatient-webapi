@@ -76,11 +76,11 @@ func NewMongoService[DocType interface{}](config MongoServiceConfig) DbService[D
 	}
 
 	if svc.DbName == "" {
-		svc.DbName = enviro("AMBULANCE_API_MONGODB_DATABASE", "<pfx>-ambulance-wl")
+		svc.DbName = enviro("AMBULANCE_API_MONGODB_DATABASE", "mrud-inpatient-wl")
 	}
 
 	if svc.Collection == "" {
-		svc.Collection = enviro("AMBULANCE_API_MONGODB_COLLECTION", "ambulance")
+		svc.Collection = enviro("AMBULANCE_API_MONGODB_COLLECTION", "inpatient")
 	}
 
 	if svc.Timeout == 0 {
