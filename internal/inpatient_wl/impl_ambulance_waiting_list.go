@@ -171,7 +171,7 @@ func (this *implInpatientWaitingListAPI) UpdateWaitingListEntry(ctx *gin.Context
     }
 
     if entry.Room != "" {
-      ambulance.WaitingList[entryIndx].Id = entry.Room
+      ambulance.WaitingList[entryIndx].Room = entry.Room
     }
     if isInteger(entry.Capacity) {
       ambulance.WaitingList[entryIndx].Capacity = entry.Capacity
