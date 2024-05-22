@@ -223,6 +223,25 @@ paths:
           description: Missing mandatory properties of input object.
         "409":
           description: Entry with the specified id already exists
+    get:
+      tags:
+        - ambulances
+      summary: Provides the ambulances list
+      operationId: getAmbulances
+      description: You get list of ambulances
+      responses:
+        "200":
+          description: list of ambulances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ambulance"
+              examples:
+                response:
+                  $ref: "#/components/examples/AmbulancesExample"
+
   "/ambulance/{ambulanceId}":
     delete:
       tags:
@@ -338,6 +357,41 @@ components:
           allocatedCapacity: 5
           freeCapacity: 4
           toPrepareCapacity: 1
+    AmbulancesExample:
+      summary: List of ambulances
+      description: |
+        Example waiting list containing 2 patients
+      value:
+        - id: dp-chirurgia
+          name: Odelenie chirugie
+          waitingList:
+            - id: x321ab3
+              room: A213
+              capacity: 4
+              allocatedCapacity: 2
+              freeCapacity: 2
+              toPrepareCapacity: 0
+            - id: x341ab4
+              room: A243
+              capacity: 10
+              allocatedCapacity: 5
+              freeCapacity: 4
+              toPrepareCapacity: 1
+        - id: dp-interne
+          name: Interne Oddelenie
+          waitingList:
+            - id: x321ab3
+              room: A213
+              capacity: 4
+              allocatedCapacity: 2
+              freeCapacity: 2
+              toPrepareCapacity: 0
+            - id: x341ab4
+              room: A243
+              capacity: 10
+              allocatedCapacity: 5
+              freeCapacity: 4
+              toPrepareCapacity: 1
     AmbulanceExample:
       summary: Sample GP ambulance
       description: |

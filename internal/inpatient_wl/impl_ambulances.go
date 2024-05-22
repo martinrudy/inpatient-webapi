@@ -132,3 +132,48 @@ func (this *implAmbulancesAPI) DeleteAmbulance(ctx *gin.Context) {
             })
     }
 }
+
+// GetAmbulances - Returns all ambulances
+func (this *implAmbulancesAPI) GetAmbulances(ctx *gin.Context) {
+    value, exists := ctx.Get("db_service")
+    if !exists {
+        ctx.JSON(
+            http.StatusInternalServerError,
+            gin.H{
+                "status":  "Internal Server Error",
+                "message": "db_service not found",
+                "error":   "db_service not found",
+            })
+        return
+    }
+
+    db, ok := value.(db_service.DbService[Ambulance])
+    if !ok {
+        ctx.JSON(
+            http.StatusInternalServerError,
+            gin.H{
+                "status":  "Internal Server Error",
+                "message": "db_service context is not of type db_service.DbService",
+                "error":   "cannot cast db_service context to db_service.DbService",
+            })
+        return
+    }
+
+    ambulances, err := db.GetDocuments(ctx)
+
+    if err != nil {
+        ctx.JSON(
+            http.StatusBadGateway,
+            gin.H{
+                "status":  "Bad Gateway",
+                "message": "Failed to get ambulances from database",
+                "error":   err.Error(),
+            })
+        return
+    }
+
+    ctx.JSON(
+        http.StatusOK,
+        ambulances,
+    )
+}
