@@ -36,6 +36,9 @@ switch ($command) {
     "test" {
         go test -v ./...
     }
+    "docker" {
+       docker build -t rudyni/inpatient-wl-webapi:local-build -f ${ProjectRoot}/build/docker/Dockerfile .
+    }
     default {
         throw "Unknown command: $command"
     }
