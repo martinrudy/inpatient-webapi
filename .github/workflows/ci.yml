@@ -33,7 +33,7 @@ jobs:
         # version: 7.0.0-beta - at time of writing this text only prerelease was available
         generator: go-gin-server
         input: api/inpatient-wl.openapi.yaml
-        additional-properties: apiPath=internal/inpatient_wl,packageName=ambulance_wl
+        additional-properties: apiPath=internal/inpatient_wl,packageName=inpatient_wl
         template: scripts/templates
         
     - name: Build
